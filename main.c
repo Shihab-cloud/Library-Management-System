@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h>
 #include<dos.h>
+#include<time.h>
+
 void menu_h(void);
 void splash_h (void);
 void login_h(void);
@@ -12,25 +13,28 @@ void issueBook(void);
 void issueList(void);
 
 
-struct books{
+struct books
+{
     int id;
     char bookName[50];
     char authorName[50];
     char date[12];
 }b;
 
-struct student{
+struct student
+{
     int id;
     char sName[50];
-    char sClass[50];
-    int sRoll;
+    char sSemester[50];
+    int sId;
     char bookName[50];
     char date[12];
 }s;
 
 FILE *fp;
 
-int main(void){
+int main(void)
+{
 
     splash_h();
 
@@ -41,7 +45,8 @@ int main(void){
        int ch;
 
 
-    while(1){
+    while(1)
+    {
         system("cls");
         printf("<== Library Management System ==>\n");
         printf("1.Add Book\n");
@@ -53,7 +58,8 @@ int main(void){
         printf("Enter your choice: ");
         scanf("%d", &ch);
 
-        switch(ch){
+        switch(ch)
+        {
         case 0:
             exit(0);
 
@@ -89,13 +95,14 @@ int main(void){
        return 0;
 }
 
-void splash_h (void){
+void splash_h (void)
+{
 
-printf(" __    _ _                      _____                                   _      _____         _             \n");
-printf("|  |  |_| |_ ___ ___ ___ _ _   |     |___ ___ ___ ___ ___ _____ ___ ___| |_   |   __|_ _ ___| |_ ___ _____ \n");
-printf("|  |__| | . |  _| .'|  _| | |  | | | | .'|   | .'| . | -_|     | -_|   |  _|  |__   | | |_ -|  _| -_|     |\n");
-printf("|_____|_|___|_| |__,|_| |_  |  |_|_|_|__,|_|_|__,|_  |___|_|_|_|___|_|_|_|    |_____|_  |___|_| |___|_|_|_|\n");
-printf("                        |___|                    |___|                              |___|                  \n");
+    printf(" __    _ _                      _____                                   _      _____         _             \n");
+    printf("|  |  |_| |_ ___ ___ ___ _ _   |     |___ ___ ___ ___ ___ _____ ___ ___| |_   |   __|_ _ ___| |_ ___ _____ \n");
+    printf("|  |__| | . |  _| .'|  _| | |  | | | | .'|   | .'| . | -_|     | -_|   |  _|  |__   | | |_ -|  _| -_|     |\n");
+    printf("|_____|_|___|_| |__,|_| |_  |  |_|_|_|__,|_|_|__,|_  |___|_|_|_|___|_|_|_|    |_____|_  |___|_| |___|_|_|_|\n");
+    printf("                        |___|                    |___|                              |___|                  \n");
 
 
 
@@ -104,7 +111,8 @@ system("cls");
 
 }
 
-void login_h(void){
+void login_h(void)
+{
 
     char username[15];
     char password[12];
@@ -116,26 +124,33 @@ void login_h(void){
     printf("Enter your password:\n");
     scanf("%s",&password);
 
-    if(strcmp(username,"Shihab")==0){
-        if(strcmp(password,"123")==0){
+    if(strcmp(username,"Shihab")==0)
+    {
+        if(strcmp(password,"123")==0)
+        {
 
-        printf("\nWelcome.Login Success!");
+            printf("\nWelcome.Login Success!");
 
 
-        }else{
-    printf("\nwrong password");
-    sleep(5000);
-             }
-    }else{
-    printf("\nUser doesn't exist");
-    sleep(5000);
-         }
+        }
+        else
+        {
+            printf("\nwrong password");
+            sleep(5000);
+        }
+    }
+    else
+    {
+        printf("\nUser doesn't exist");
+        sleep(5000);
+    }
      sleep(3);
 
      system("cls");
 }
 
-void addBook(void){
+void addBook(void)
+{
     char myDate[12];
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -162,21 +177,24 @@ void addBook(void){
 }
 
 
-void booksList(void){
+void booksList(void)
+{
 
     system("cls");
     printf("<== Available Books ==>\n\n");
     printf("%-10s %-30s %-20s %s\n\n", "Book id", "Book Name", "Author", "Date");
 
     fp = fopen("books.txt", "rb");
-    while(fread(&b, sizeof(b), 1, fp) == 1){
+    while(fread(&b, sizeof(b), 1, fp) == 1)
+    {
         printf("%-10d %-30s %-20s %s\n", b.id, b.bookName, b.authorName, b.date);
     }
 
     fclose(fp);
 }
 
-void del(void){
+void del(void)
+{
     int id, f=0;
     system("cls");
     printf("<== Remove Books ==>\n\n");
@@ -188,17 +206,24 @@ void del(void){
     fp = fopen("books.txt", "rb");
     ft = fopen("temp.txt", "wb");
 
-    while(fread(&b, sizeof(b), 1, fp) == 1){
-        if(id == b.id){
+    while(fread(&b, sizeof(b), 1, fp) == 1)
+    {
+        if(id == b.id)
+        {
             f=1;
-        }else{
+        }
+        else
+        {
             fwrite(&b, sizeof(b), 1, ft);
         }
     }
 
-    if(f==1){
+    if(f==1)
+    {
         printf("\n\nDeleted Successfully.");
-    }else{
+    }
+    else
+    {
         printf("\n\nRecord Not Found !");
     }
 
@@ -211,7 +236,8 @@ void del(void){
 }
 
 
-void issueBook(void){
+void issueBook(void)
+{
 
     char myDate[12];
     time_t t = time(NULL);
@@ -230,15 +256,18 @@ void issueBook(void){
 
     fp = fopen("books.txt", "rb");
 
-    while(fread(&b, sizeof(b), 1, fp) == 1){
-        if(b.id == s.id){
+    while(fread(&b, sizeof(b), 1, fp) == 1)
+    {
+        if(b.id == s.id)
+        {
             strcpy(s.bookName, b.bookName);
             f=1;
             break;
         }
     }
 
-    if(f==0){
+    if(f==0)
+    {
         printf("No book found with this id\n");
         printf("Please try again...\n\n");
         return;
@@ -263,15 +292,17 @@ void issueBook(void){
     fclose(fp);
 }
 
-void issueList(void){
+void issueList(void)
+{
     system("cls");
     printf("<== Book Issue List ==>\n\n");
 
-    printf("%-10s %-30s %-20s %-10s %-30s %s\n\n", "S.id", "Name", "Class", "Roll", "Book Name", "Date");
+    printf("%-10s %-30s %-20s %-10s %-30s %s\n\n", "B.id", "Name", "Semester", "ID", "Book Name", "Date");
 
     fp = fopen("issue.txt", "rb");
-    while(fread(&s, sizeof(s), 1, fp) == 1){
-        printf("%-10d %-30s %-20s %-10d %-30s %s\n", s.id, s.sName, s.sClass, s.sRoll, s.bookName, s.date);
+    while(fread(&s, sizeof(s), 1, fp) == 1)
+    {
+        printf("%-10d %-30s %-20s %-10d %-30s %s\n", s.id, s.sName, s.sSemester, s.sId, s.bookName, s.date);
     }
 
     fclose(fp);

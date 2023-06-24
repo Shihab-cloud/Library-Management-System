@@ -106,8 +106,8 @@ void splash_h (void)
 
 
 
-sleep(5);
-system("cls");
+    sleep(5);
+    system("cls");
 
 }
 

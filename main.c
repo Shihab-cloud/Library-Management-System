@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<dos.h>
 void menu_h(void);
 void splash_h (void);
 void login_h(void);

@@ -279,12 +279,12 @@ void issueBook(void)
     fflush(stdin);
     gets(s.sName);
 
-    printf("Enter Student Class: ");
+    printf("Enter Student Semester: ");
     fflush(stdin);
-    gets(s.sClass);
+    gets(s.sSemester);
 
-    printf("Enter Student Roll: ");
-    scanf("%d", &s.sRoll);
+    printf("Enter Student ID: ");
+    scanf("%d", &s.sID);
 
     printf("Book Issued Successfully\n\n");
 
